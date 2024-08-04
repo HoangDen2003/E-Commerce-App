@@ -13,14 +13,16 @@ const orderController = require("modules/order/controllers/orderController");
 const orderValidation = require("modules/order/validations/orderValidation");
 const authController = require("modules/auth/controllers/authController");
 const authValidation = require("modules/auth/validations/authValidation");
+const cartController = require("modules/cart/controllers/cartController");
 const { admin } = require("middlewares/authVerify");
+const { uploads } = require("middlewares/multer");
 
-router.group("/api", (router) => {
+router.group("/auth", (router) => {
   router.post("/sign-in", authController.login);
-  // router.get("log-out", auth)
 });
 
-router.group("/auth", admin, (router) => {
+// admin
+router.group("/users", admin, (router) => {
   router.delete(
     "/delete/:id",
     validate([authValidation.delete]),
@@ -41,7 +43,7 @@ router.group("/auth", admin, (router) => {
 
 router.group("/customers", admin, (router) => {
   router.delete(
-    "/delete/:id",
+    "/delete",
     validate([customerValidation.delete]),
     customerController.delete
   );
@@ -52,15 +54,16 @@ router.group("/customers", admin, (router) => {
   );
   router.post(
     "/create",
+    uploads.single("avatar"),
     validate([customerValidation.create]),
     customerController.create
   );
   router.get("/", customerController.index);
 });
 
-router.group("/categories", admin, (router) => {
+router.group("/categories", (router) => {
   router.delete(
-    "/delete/:id",
+    "/delete",
     validate([categoryValidation.delete]),
     categoryController.delete
   );
@@ -71,6 +74,7 @@ router.group("/categories", admin, (router) => {
   );
   router.post(
     "/create",
+    uploads.single("image"),
     validate([categoryValidation.create]),
     categoryController.create
   );
@@ -78,7 +82,7 @@ router.group("/categories", admin, (router) => {
   router.get("/", categoryController.index);
 });
 
-router.group("/products", admin, (router) => {
+router.group("/products", (router) => {
   router.delete(
     "/delete/:id",
     validate([productValidation.delete]),
@@ -92,8 +96,10 @@ router.group("/products", admin, (router) => {
   router.post(
     "/create",
     validate([productValidation.create]),
+    uploads.single("image"),
     productController.create
   );
+  router.post("/get", productController.getproduct);
   router.get("/", productController.index);
 });
 
@@ -115,5 +121,18 @@ router.group("/orders", admin, (router) => {
   );
   router.get("/", orderController.index);
 });
+
+router.group("/carts", (router) => {
+  router.put("/delete-product-cart", cartController.deleteProductCart);
+  router.delete("/delete/:id", cartController.delete);
+  router.put("/update/:id", cartController.update);
+  router.post("/create", cartController.create);
+  router.get("/cart", cartController.cart);
+  router.get("/", cartController.index);
+});
+
+// login customer
+router.post("/customer/login", customerController.login);
+router.get("/get-user/:_id", customerController.customer);
 
 module.exports = router;

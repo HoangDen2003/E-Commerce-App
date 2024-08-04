@@ -9,12 +9,15 @@ const { swaggerUIServe, swaggerUISetup } = require("kernels/api-docs");
 const expressLayouts = require("express-ejs-layouts");
 const path = require("path");
 const db = require("configs/ConnectDB");
+const cors = require("cors");
 
 const app = express();
 app.disable("x-powered-by");
 
 // connect db
 db.connect();
+
+app.use(cors());
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -24,7 +27,7 @@ app.use(express.urlencoded({ extended: true }));
 // app.set("view engine", "ejs");
 
 // // user css, js
-// app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "public/uploads")));
 
 app.use(bodyParser.json());
 app.use("/api", [], router);

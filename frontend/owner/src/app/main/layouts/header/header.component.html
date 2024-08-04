@@ -1,0 +1,154 @@
+<!-- Header Section Begin -->
+<header class="header">
+  <!-- <div class="header__top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-7">
+                        <div class="header__top__left">
+                            <p>Free shipping, 30-day return or refund guarantee.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-5">
+                        <div class="header__top__right">
+                            <div class="header__top__links">
+                                <a href="#">Sign in</a>
+                                <a href="#">FAQs</a>
+                            </div>
+                            <div class="header__top__hover">
+                                <span>Usd <i class="arrow_carrot-down"></i></span>
+                                <ul>
+                                    <li>USD</li>
+                                    <li>EUR</li>
+                                    <li>USD</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-2 col-md-2">
+        <div class="header__logo my-2">
+          <a href="./index.html">
+            <img src="../../../../assets/img/logo/logo.png" alt="" />
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-7 col-md-7">
+        <nav class="header__menu mobile-menu">
+          <ul>
+            <li [class.active]="url === '/home'" (click)="setActive('/home')">
+              <a routerLink="/">Home</a>
+            </li>
+            <li [class.active]="url === '/shop'" (click)="setActive('/shop')">
+              <a routerLink="/shop">Shop</a>
+            </li>
+            <!-- <li>
+                  <a href="#">Pages</a>
+                  <ul class="dropdown">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="./shop-details.html">Shop Details</a></li>
+                    <li><a href="./shopping-cart.html">Shopping Cart</a></li>
+                    <li><a href="./checkout.html">Check Out</a></li>
+                    <li><a href="./blog-details.html">Blog Details</a></li>
+                  </ul>
+                </li> -->
+            <li [class.active]="url === '/blog'" (click)="setActive('/blog')">
+              <a href="javascript:;">Blog</a>
+            </li>
+            <li
+              [class.active]="url === '/contacts'"
+              (click)="setActive('/contacts')"
+            >
+              <a href="javascript:;">Contacts</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div class="col-lg-3 col-md-3">
+        <div class="header__nav__option">
+          <a href="#" class="search-switch active">
+            <img src="../../../../assets/img/icon/search.png" alt="" />
+          </a>
+          <a href="#">
+            <img src="../../../../assets/img/icon/heart.png" alt="" />
+          </a>
+          <a
+            class="active ms-cart"
+            routerLink="/shopping-cart"
+            (click)="setActive('/shopping-cart')"
+          >
+            <img
+              src="../../../../assets/img/icon/cart2.png"
+              width="38"
+              height="36"
+              alt=""
+            />
+            <span
+              class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20 text-white left-24 top-0"
+            >
+              {{ cartCount }}
+            </span>
+          </a>
+          <a
+            href="javascript:;"
+            class="nav-item navbar-dropdown dropdown-user dropdown"
+          >
+            <div class="avatar avatar-online" (click)="toggleDropdown()">
+              <img
+                [src]="item.avatar"
+                alt
+                class="w-px-40 h-auto rounded-circle"
+                height="32"
+                width="32"
+              />
+            </div>
+            <ul class="dropdown-content" [class.d-block]="isDropdownOpen">
+              <li>
+                <a href="#">
+                  <div class="d-flex">
+                    <div class="me-3">
+                      <div class="avatar avatar-online">
+                        <img
+                          [src]="item.avatar"
+                          alt
+                          class="w-px-40 h-auto rounded-circle"
+                          width="40"
+                          height="40"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <h6 class="fw-medium d-block fs-15">
+                        {{ item.fullname }}
+                      </h6>
+                      <small class="text-muted">Customer</small>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="javascript:;">
+                  <i class="fa fa-regular fa-user me-3"></i>My Profile
+                </a>
+              </li>
+              <li>
+                <div class="dropdown-divider"></div>
+              </li>
+              <li>
+                <a href="javascript:;" (click)="onLogOut()">
+                  <i class="fa fa-solid fa-power-off me-2"></i>
+                  Log Out
+                </a>
+              </li>
+            </ul>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="canvas__open"><i class="fa fa-bars"></i></div>
+  </div>
+</header>
+<!-- Header Section End -->

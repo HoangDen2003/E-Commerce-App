@@ -25,15 +25,17 @@ const OrderSchema = new Schema(
       type: String,
       require: true,
     },
+    method: {
+      type: String,
+      require: true,
+    },
     status: {
       type: String,
       require: true,
     },
-    address: [
-      {
-        type: String,
-      },
-    ],
+    address: {
+      type: String,
+    },
   },
   {
     timestamps: true,

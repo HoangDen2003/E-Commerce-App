@@ -8,6 +8,9 @@ module.exports = {
   },
   create: async (req, res) => {
     const customer = req.body;
+    customer.avatar = req.file
+      ? `http://localhost:5000/${req.file.filename}`
+      : "";
     const result = await customerService.createCustomer(customer);
     return responseUtils.ok(res, { customer: result });
   },
@@ -18,8 +21,17 @@ module.exports = {
     return responseUtils.ok(res, { customer: result });
   },
   delete: async (req, res) => {
-    const { id } = req.params;
-    const result = await customerService.deleteCustomer(id);
+    const { ids } = req.body;
+    const result = await customerService.deleteCustomer(ids);
     return responseUtils.ok(res, { "Customer deleted": result });
+  },
+  login: async (req, res) => {
+    const account = req.body;
+    const result = await customerService.login(account);
+    return responseUtils.ok(res, result);
+  },
+  customer: async (req, res) => {
+    const result = await customerService.customer(req.params);
+    return responseUtils.ok(res, result);
   },
 };

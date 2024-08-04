@@ -1,0 +1,58 @@
+<div class="row mx-2">
+  <div class="col-sm-12 col-md-6">
+    <div
+      class="dataTables_info"
+      id="DataTables_Table_0_info"
+      role="status"
+      aria-live="polite"
+    >
+      {{ (currentPage - 1) * limit + 1 }} - {{ currentPage * limit }} of
+      {{ itemsLength }} items
+    </div>
+  </div>
+  <div class="col-sm-12 col-md-6">
+    <div
+      class="dataTables_paginate paging_simple_numbers"
+      id="DataTables_Table_0_paginate"
+    >
+      <ul class="pagination align-items-center justify-content-end">
+        <li class="page-item" [class.disabled]="currentPage === 1">
+          <a
+            href="javascript:void(0)"
+            class="page-link"
+            (click)="currentPage > 1 && onPageChange(currentPage - 1)"
+          >
+            Previous
+          </a>
+        </li>
+        <li
+          *ngFor="let page of getDisplayPages(); let i = index"
+          class="page-item"
+          [class.active]="page === currentPage"
+        >
+          <ng-container *ngIf="page === '...'">
+            <span class="page-link">...</span>
+          </ng-container>
+          <ng-container *ngIf="page !== '...'">
+            <a
+              href="javascript:void(0)"
+              class="page-link"
+              (click)="onPageChange(page)"
+            >
+              {{ i + 1 }}
+            </a>
+          </ng-container>
+        </li>
+        <li class="page-item" [class.disabled]="currentPage === pages">
+          <a
+            href="javascript:void(0)"
+            class="page-link"
+            (click)="currentPage < pages && onPageChange(currentPage + 1)"
+          >
+            Next
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

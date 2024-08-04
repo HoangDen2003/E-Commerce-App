@@ -4,7 +4,7 @@ const responseUtils = require("utils/responseUtils");
 module.exports = {
   index: async (req, res) => {
     const orders = await orderService.list();
-    return responseUtils.ok(res, { orders: orders });
+    return responseUtils.ok(res, orders);
   },
   create: async (req, res) => {
     const order = req.body;

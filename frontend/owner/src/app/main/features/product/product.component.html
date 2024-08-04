@@ -1,0 +1,48 @@
+<div class="product__item {{ item.tags }}">
+  <div
+    class="product__item__pic set-bg"
+    data-setbg="img/product/product-3.jpg"
+    style="background-image: url('{{ item.image }}')"
+  >
+    <span class="label" [class.d-none]="!item.tags">{{ item.tags }}</span>
+    <ul class="product__hover">
+      <li>
+        <a href="#"
+          ><img src="../../../../assets/img/icon/heart.png" alt=""
+        /></a>
+      </li>
+      <li>
+        <a href="#"
+          ><img src="../../../../assets/img/icon/compare.png" alt="" />
+          <span>Compare</span></a
+        >
+      </li>
+      <li>
+        <a href="/product-details/{{ item._id }}" (click)="onSetPID(item._id)">
+          <img src="../../../../assets/img/icon/search.png" alt="" />
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="product__item__text">
+    <h6>{{ item.name }}</h6>
+    <a href="javascript:;" (click)="onAddToCart(item)" class="add-cart"
+      >+ Add To Cart</a
+    >
+    <!-- star rating-->
+    <app-star-rating [rating]="item.stars"></app-star-rating>
+    <!-- / star rating-->
+    <h5>${{ item.price }}</h5>
+    <div class="product__color__select">
+      <label for="pc-7">
+        <input type="radio" id="pc-7" />
+      </label>
+      <label class="active black" for="pc-8">
+        <input type="radio" id="pc-8" />
+      </label>
+      <label class="grey" for="pc-9">
+        <input type="radio" id="pc-9" />
+      </label>
+    </div>
+  </div>
+</div>
