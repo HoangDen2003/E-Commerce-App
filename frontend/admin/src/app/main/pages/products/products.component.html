@@ -1,0 +1,235 @@
+<div class="container-xxl flex-grow-1 container-p-y">
+  <div class="content">
+    <div class="page-list">
+      <div class="card">
+        <div
+          class="page-header flex justify-content-between align-items-center p-24 border-bottom"
+        >
+          <div class="title flex direction-col">
+            <h2 class="my-0">Products</h2>
+          </div>
+          <button
+            class="btn btn-secondary delete-item btn-danger me-3 ms-auto"
+            tabindex="0"
+            aria-controls="DataTables_Table_0"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasAddUser"
+          >
+            <span
+              ><i class="fa-regular fa-trash-can"></i
+              ><span class="d-none d-sm-inline-block ms-2"
+                >Delete All</span
+              ></span
+            >
+          </button>
+          <a
+            routerLink="/products/add"
+            type="button"
+            class="btn btn-secondary btn-primary"
+          >
+            <span>
+              <i class="fa-solid fa-plus"></i>
+              <span class="d-none d-sm-inline-block ms-2">Add Product</span>
+            </span>
+          </a>
+        </div>
+        <div class="card-header border-bottom">
+          <div class="row justify-content-between">
+            <div class="col-md-4 col-4 px-0">
+              <div class="search-input ps-re">
+                <a class="ps-ab p-8-11 fs-18 fl-r opacity-08">
+                  <i class="fa-solid fa-magnifying-glass bg-navbar-theme"></i>
+                </a>
+                <input
+                  class="form-control ms-2"
+                  type="text"
+                  value=""
+                  placeholder="Search product"
+                  name="value"
+                />
+              </div>
+            </div>
+            <div class="col-md-1 col-2">
+              <div class="dataTables_length" id="DataTables_Table_0_length">
+                <select
+                  name="DataTables_Table_0_length"
+                  aria-controls="DataTables_Table_0"
+                  class="form-select"
+                >
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                  <option value="50">50</option>
+                  <option value="100">100</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="table-responsive text-nowrap">
+          <table
+            class="table table-striped border-bottom datatables-users dataTable no-footer dtr-column"
+          >
+            <thead>
+              <tr>
+                <th
+                  class="sorting_disabled dt-checkboxes-cell dt-checkboxes-select-all"
+                  rowspan="1"
+                  colspan="1"
+                  style="width: 18px"
+                  data-col="1"
+                  aria-label=""
+                >
+                  <input
+                    id="select-all"
+                    type="checkbox"
+                    class="form-check-input"
+                  />
+                </th>
+                <th>Product</th>
+                <th>Category</th>
+                <th>Stock</th>
+                <th>Price</th>
+                <th>Quantity</th>
+              </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+              <!-- <tr class="odd">
+                <td class="dt-checkboxes-cell">
+                  <input
+                    type="checkbox"
+                    class="dt-checkboxes form-check-input"
+                  />
+                </td>
+                <td>
+                  <div
+                    class="d-flex justify-content-start align-items-center product-name"
+                  >
+                    <div class="avatar-wrapper">
+                      <div
+                        class="avatar avatar me-2 rounded-2 bg-label-secondary"
+                      >
+                        <img
+                          src="../assets/img/products/product-9.png"
+                          alt="Product-9"
+                          class="rounded-2"
+                        />
+                      </div>
+                    </div>
+                    <div class="d-flex flex-column">
+                      <h6 class="text-body text-nowrap mb-0">Air Jordan</h6>
+                      <small class="text-muted text-truncate d-none d-sm-block"
+                        >Air Jordan is a line of basketball shoes produced by
+                        Nike</small
+                      >
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <span class="text-truncate d-flex align-items-center"
+                    ><span
+                      class="avatar-sm rounded-circle d-flex justify-content-center align-items-center bg-label-info me-2"
+                      ><i class="bx bx-walk"></i></span
+                    >Shoes</span
+                  >
+                </td>
+                <td>
+                  <span class="text-truncate"
+                    ><label class="switch switch-primary switch-sm"
+                      ><input
+                        type="checkbox"
+                        class="switch-input"
+                        id="switch" /><span class="switch-toggle-slider"
+                        ><span class="switch-off"></span></span></label
+                    ><span class="d-none">Out_of_Stock</span></span
+                  >
+                </td>
+                <td>$125</td>
+                <td>539</td>
+              </tr> -->
+              <tr
+                *ngFor="let item of items; let even = even; let odd = odd"
+                [ngClass]="{ odd: odd, even: even }"
+              >
+                <td class="dt-checkboxes-cell">
+                  <input
+                    type="checkbox"
+                    class="dt-checkboxes form-check-input"
+                  />
+                </td>
+                <td>
+                  <div
+                    class="d-flex justify-content-start align-items-center product-name"
+                  >
+                    <div class="avatar-wrapper">
+                      <div
+                        class="avatar avatar me-2 rounded-2 bg-label-secondary"
+                      >
+                        <img
+                          [src]="item.image"
+                          alt="Product-9"
+                          class="rounded-2 object-fit-cover"
+                        />
+                      </div>
+                    </div>
+                    <div class="d-flex flex-column">
+                      <h6 class="text-body text-nowrap mb-0">
+                        {{ item.name }}
+                      </h6>
+                      <small
+                        class="text-muted text-truncate d-none d-sm-block"
+                        style="max-width: 200px"
+                        >{{ item.description }}</small
+                      >
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <span class="text-truncate d-flex align-items-center">
+                    <!-- <span
+                      class="avatar-sm rounded-circle d-flex justify-content-center align-items-center bg-label-secondary me-2"
+                    >
+                      <i
+                        [ngClass]="{
+                          'bx bxs-watch': item.category.name === 'watch',
+                          'fa-solid fa-shoe-prints':
+                            item.category.name === 'shoes'
+                        }"
+                      ></i>
+                    </span> -->
+                    {{ item.category?.name }}
+                  </span>
+                </td>
+                <td>
+                  <span class="text-truncate">
+                    <label class="switch switch-primary switch-sm">
+                      <input
+                        type="checkbox"
+                        class="switch-input"
+                        id="switch"
+                        [checked]="item.stock"
+                      />
+                      <span class="switch-toggle-slider">
+                        <span class="switch-off"></span>
+                        <!-- <span class="switch-on"></span> -->
+                      </span>
+                    </label>
+                    <span class="d-none">Out_of_Stock</span>
+                  </span>
+                </td>
+                <td>${{ item.price }}</td>
+                <td>{{ item.quantity }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <app-paginate
+          [currentPage]="currentPage"
+          [limit]="limit"
+          [pages]="pages"
+          [itemsLength]="items.length"
+        ></app-paginate>
+      </div>
+    </div>
+  </div>
+</div>

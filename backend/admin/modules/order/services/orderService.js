@@ -2,7 +2,10 @@ const Order = require("models/order");
 
 module.exports = {
   list: async () => {
-    const orders = await Order.find();
+    const orders = await Order.find()
+      .populate("customerID")
+      .populate("productsID")
+      .exec();
     return orders;
   },
   createOrder: async (order) => {

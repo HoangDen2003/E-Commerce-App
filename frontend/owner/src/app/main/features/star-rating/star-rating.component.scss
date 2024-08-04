@@ -1,0 +1,24 @@
+.rating {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row-reverse;
+
+    fa-icon {
+        color: gray;
+        cursor: pointer;
+    
+        // &.rated,
+        // &:hover,
+        // &:hover ~ fa-icon {
+        //     color: #f1c40f;
+        // }
+
+        &.rated {
+            color: #f1c40f;
+        }
+    
+        transition: color .1s ease-in-out;
+    
+    }
+
+}

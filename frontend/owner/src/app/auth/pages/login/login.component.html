@@ -1,0 +1,364 @@
+<div
+  data-elementor-type="wp-page"
+  data-elementor-id="32298"
+  class="elementor elementor-32298"
+  data-elementor-post-type="page"
+>
+  <!-- Page Preloder -->
+  <div id="preloder" [class.d-none]="!isLoading">
+    <div class="loader"></div>
+  </div>
+  <section
+    data-particle_enable="false"
+    data-particle-mobile-disabled="false"
+    class="elementor-section elementor-top-section elementor-element elementor-element-e3a997f elementor-section-boxed elementor-section-height-default elementor-section-height-default"
+    data-id="e3a997f"
+    data-element_type="section"
+    data-settings='{"background_background":"classic"}'
+  >
+    <div class="elementor-container elementor-column-gap-no">
+      <div
+        class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-81467e4"
+        data-id="81467e4"
+        data-element_type="column"
+      >
+        <div class="elementor-widget-wrap elementor-element-populated">
+          <section
+            data-particle_enable="false"
+            data-particle-mobile-disabled="false"
+            class="elementor-section elementor-inner-section elementor-element elementor-element-44bc276 elementor-section-content-middle elementor-section-boxed elementor-section-height-default elementor-section-height-default animated zoomIn"
+            data-id="44bc276"
+            data-element_type="section"
+            data-settings='{"background_background":"classic","animation":"zoomIn"}'
+          >
+            <div class="elementor-container elementor-column-gap-no">
+              <div
+                class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-ef07011"
+                data-id="ef07011"
+                data-element_type="column"
+                data-settings='{"background_background":"classic"}'
+              >
+                <div class="elementor-widget-wrap elementor-element-populated">
+                  <div
+                    class="elementor-element elementor-element-acde4e8 elementor-widget elementor-widget-image"
+                    data-id="acde4e8"
+                    data-element_type="widget"
+                    data-widget_type="image.default"
+                  >
+                    <div class="elementor-widget-container">
+                      <img
+                        fetchpriority="high"
+                        decoding="async"
+                        width="552"
+                        height="437"
+                        src="https://live.templately.com/wp-content/uploads/2021/02/56468664-image_.png"
+                        class="attachment-full size-full wp-image-32300"
+                        alt=""
+                        srcset="
+                          https://live.templately.com/wp-content/uploads/2021/02/56468664-image_.png         552w,
+                          https://live.templately.com/wp-content/uploads/2021/02/56468664-image_-300x238.png 300w
+                        "
+                        sizes="(max-width: 552px) 100vw, 552px"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-250f602"
+                data-id="250f602"
+                data-element_type="column"
+              >
+                <div class="elementor-widget-wrap elementor-element-populated">
+                  <div
+                    class="elementor-element elementor-element-87dcdf1 elementor-widget__width-initial elementor-widget elementor-widget-heading"
+                    data-id="87dcdf1"
+                    data-element_type="widget"
+                    data-widget_type="heading.default"
+                  >
+                    <div class="elementor-widget-container">
+                      <h3
+                        class="elementor-heading-title elementor-size-default"
+                      >
+                        Welcome Back. Please Log In To Your Account.
+                      </h3>
+                    </div>
+                  </div>
+                  <div
+                    class="elementor-element elementor-element-b006385 elementor-widget elementor-widget-eael-login-register"
+                    data-id="b006385"
+                    data-element_type="widget"
+                    data-widget_type="eael-login-register.default"
+                  >
+                    <div class="elementor-widget-container">
+                      <div
+                        class="eael-login-registration-wrapper"
+                        data-is-ajax="yes"
+                        data-widget-id="b006385"
+                        data-recaptcha-sitekey=""
+                        data-recaptcha-sitekey-v3=""
+                        data-login-recaptcha-version="v2"
+                        data-register-recaptcha-version="v2"
+                        data-redirect-to=""
+                        data-resetpassword-redirect-to=""
+                      >
+                        <section
+                          id="eael-login-form-wrapper"
+                          class=""
+                          data-recaptcha-theme="light"
+                          data-recaptcha-size="normal"
+                        >
+                          <div
+                            class="eael-login-form-wrapper eael-lr-form-wrapper style-2"
+                          >
+                            <div class="lr-form-wrapper">
+                              <form
+                                #formData="ngForm"
+                                (ngSubmit)="onSubmit(formData.value)"
+                                class="eael-login-form eael-lr-form"
+                                id="eael-login-form"
+                                method="post"
+                              >
+                                <div class="eael-lr-form-group eael-user-login">
+                                  <input
+                                    type="text"
+                                    name="email"
+                                    id="eael-user-login"
+                                    class="eael-lr-form-control"
+                                    aria-describedby="emailHelp"
+                                    placeholder="Username or Email Address"
+                                    required=""
+                                    ngModel
+                                  />
+                                </div>
+                                <div
+                                  class="eael-lr-form-group eael-user-password"
+                                >
+                                  <div class="eael-lr-password-wrapper">
+                                    <input
+                                      [type]="
+                                        isShowPassword ? 'text' : 'password'
+                                      "
+                                      name="password"
+                                      class="eael-lr-form-control"
+                                      id="eael-user-password"
+                                      placeholder="Password"
+                                      required=""
+                                      ngModel
+                                    />
+                                    <button
+                                      type="button"
+                                      id="wp-hide-pw"
+                                      class="wp-hide-pw hide-if-no-js"
+                                      aria-label="Show password"
+                                    >
+                                      <!-- <span
+                                        class="dashicons dashicons-visibility"
+                                        aria-hidden="true"
+                                      ></span> -->
+                                      <fa-icon
+                                        [icon]="
+                                          isShowPassword ? faEye : faEyeSlash
+                                        "
+                                        class="me-2"
+                                        (click)="onShowPassword()"
+                                      ></fa-icon>
+                                    </button>
+                                  </div>
+                                </div>
+                                <div
+                                  class="eael-forever-forget eael-lr-form-group"
+                                >
+                                  <p class="forget-menot">
+                                    <input
+                                      name="eael-rememberme"
+                                      type="checkbox"
+                                      id="rememberme"
+                                      class="remember-me"
+                                      value="forever"
+                                    />
+                                    <label
+                                      for="rememberme"
+                                      class="eael-checkbox-label rememberme"
+                                    >
+                                      Remember Password</label
+                                    >
+                                  </p>
+                                  <p class="forget-pass">
+                                    <a
+                                      class="text-danger"
+                                      href="https://live.templately.com/my-account/lost-password/"
+                                      >Forgot password?</a
+                                    >
+                                  </p>
+                                </div>
+
+                                <div class="eael-lr-footer">
+                                  <div class="eael-lr-form-loader-wrapper">
+                                    <input
+                                      type="submit"
+                                      name="eael-login-submit"
+                                      id="eael-login-submit"
+                                      class="g-recaptcha eael-lr-btn eael-lr-btn-block"
+                                      value="Login"
+                                    />
+                                  </div>
+                                </div>
+                                <div
+                                  class="eael-form-validation-container"
+                                ></div>
+                                <input
+                                  type="hidden"
+                                  id="eael-login-nonce"
+                                  name="eael-login-nonce"
+                                  value="74d15170e5"
+                                /><input
+                                  type="hidden"
+                                  name="_wp_http_referer"
+                                  value="/elemart/login/"
+                                />
+                                <input
+                                  type="hidden"
+                                  name="page_id"
+                                  value="32298"
+                                />
+                                <input
+                                  type="hidden"
+                                  name="page_id_for_popup"
+                                  value="32298"
+                                />
+                                <input
+                                  type="hidden"
+                                  name="resetpassword_in_popup_selector"
+                                  value=""
+                                />
+                                <input
+                                  type="hidden"
+                                  name="widget_id"
+                                  value="b006385"
+                                />
+                              </form>
+                            </div>
+                          </div>
+                        </section>
+
+                        <script>
+                          jQuery(document).ready(function ($) {
+                            var eael_get_login_status =
+                              localStorage.getItem("eael-is-login-form");
+                            if (eael_get_login_status === "true") {
+                              setTimeout(function () {
+                                var button = jQuery('[eael-login="yes"]');
+                                if (!button.hasClass("eael-clicked")) {
+                                  button
+                                    .trigger("click")
+                                    .addClass("eael-clicked");
+                                }
+                              }, 100);
+
+                              setTimeout(function () {
+                                jQuery('[eael-login="yes"]').removeClass(
+                                  "eael-clicked"
+                                );
+                              }, 500);
+                            }
+                          });
+                        </script>
+                        <section
+                          id="eael-lostpassword-form-wrapper"
+                          class="eael-lr-d-none"
+                        >
+                          <div
+                            class="eael-lostpassword-form-wrapper eael-lr-form-wrapper style-2"
+                          >
+                            <div class="lr-form-wrapper">
+                              <form
+                                class="eael-lostpassword-form eael-lr-form"
+                                id="eael-lostpassword-form"
+                                method="post"
+                              >
+                                <div class="eael-lr-form-group">
+                                  <label
+                                    for="eael-user-lostpassword"
+                                    class="eael-field-label"
+                                    >Username or Email Address</label
+                                  >
+                                  <input
+                                    type="text"
+                                    name="eael-user-lostpassword"
+                                    id="eael-user-lostpassword"
+                                    class="eael-lr-form-control"
+                                    aria-describedby="emailHelp"
+                                    placeholder="Username or Email Address"
+                                    required=""
+                                  />
+                                </div>
+
+                                <div class="eael-lr-footer">
+                                  <input
+                                    type="submit"
+                                    name="eael-lostpassword-submit"
+                                    id="eael-lostpassword-submit"
+                                    class="eael-lr-btn eael-lr-btn-block"
+                                    value="Reset Password"
+                                  />
+                                  <div class="eael-sign-wrapper">
+                                    <span class="d-ib"> </span>
+                                    <a
+                                      href=""
+                                      id="eael-lr-login-toggle-lostpassword"
+                                      class="eael-lr-link"
+                                      data-action="form"
+                                      >Sign In</a
+                                    >
+                                  </div>
+                                </div>
+                                <div
+                                  class="eael-form-validation-container"
+                                ></div>
+                                <input
+                                  type="hidden"
+                                  id="eael-lostpassword-nonce"
+                                  name="eael-lostpassword-nonce"
+                                  value="74d15170e5"
+                                /><input
+                                  type="hidden"
+                                  name="_wp_http_referer"
+                                  value="/elemart/login/"
+                                />
+                                <input
+                                  type="hidden"
+                                  name="page_id"
+                                  value="32298"
+                                />
+                                <input
+                                  type="hidden"
+                                  name="page_id_for_popup"
+                                  value="32298"
+                                />
+                                <input
+                                  type="hidden"
+                                  name="resetpassword_in_popup_selector"
+                                  value=""
+                                />
+                                <input
+                                  type="hidden"
+                                  name="widget_id"
+                                  value="b006385"
+                                />
+                              </form>
+                            </div>
+                          </div>
+                        </section>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

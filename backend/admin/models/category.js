@@ -9,13 +9,8 @@ const CategorySchema = new Schema({
   description: {
     type: String,
   },
-  slug: { type: String, require: true },
-  totalproducts: {
-    type: Number,
-  },
-  status: {
+  slug: {
     type: String,
-    require: true,
   },
 });
 

@@ -3,8 +3,9 @@ const responseUtils = require("utils/responseUtils");
 
 module.exports = {
   index: async (req, res) => {
-    const result = await authService.list();
-    return responseUtils.ok(res, { admins: result });
+    const { limit, currentPage } = req.query;
+    const result = await authService.list(limit, currentPage);
+    return responseUtils.ok(res, result);
   },
   create: async (req, res) => {
     const admin = req.body;
@@ -24,9 +25,13 @@ module.exports = {
   },
   // login and logout
   login: async (req, res) => {
-    const account = req.body;
-    const result = await authService.login(account);
-    return responseUtils.ok(res, { account: result });
+    try {
+      const account = req.body;
+      const result = await authService.login(account);
+      return responseUtils.ok(res, result);
+    } catch (error) {
+      return responseUtils.error(res, error);
+    }
   },
   logout: async (req, res) => {},
 };

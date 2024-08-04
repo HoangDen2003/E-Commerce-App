@@ -13,8 +13,7 @@ module.exports = {
     const category = await Category.updateOne({ _id: id }, ctg);
     return category;
   },
-  deleteCategory: async (id) => {
-    const category = await Category.findByIdAndDelete({ _id: id });
-    return category;
+  deleteCategory: async (ids) => {
+    await Category.deleteMany({ _id: { $in: ids } });
   },
 };

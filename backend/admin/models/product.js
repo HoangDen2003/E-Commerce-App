@@ -4,7 +4,6 @@ const Schema = mongoose.Schema;
 const ProductSchema = new Schema({
   name: {
     type: String,
-    require: true,
   },
   description: {
     type: String,
@@ -12,22 +11,27 @@ const ProductSchema = new Schema({
   slug: {
     type: String,
   },
-  picture: {
+  image: {
     type: String,
-    default: "picture_1.png",
   },
   price: {
     type: Number,
-    require: true,
   },
   quantity: {
     type: Number,
-    require: true,
   },
   category: {
     type: Schema.Types.ObjectId,
     ref: "Category",
-    require: true,
+  },
+  stock: {
+    type: Boolean,
+  },
+  stars: {
+    type: Number,
+  },
+  tags: {
+    type: String,
   },
 });
 

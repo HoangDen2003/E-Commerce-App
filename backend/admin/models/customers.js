@@ -20,16 +20,16 @@ const CustomerSchema = new Schema(
     phone: {
       type: String,
     },
-    //   address: [
-    //     {
-    //       type: Schema.Types.ObjectId,
-    //       ref: "Address",
-    //     },
-    //   ],
-    //   cart: {
-    //     type: Array,
-    //     default: [],
-    //   },
+    address: {
+      type: String,
+    },
+    cart: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Cart",
+      },
+    ],
+
     //   wishlist: [
     //     {
     //       type: Schema.Types.ObjectId,
@@ -39,6 +39,9 @@ const CustomerSchema = new Schema(
     status: {
       type: String,
       require: true,
+    },
+    totalspend: {
+      type: Number,
     },
   },
   {
