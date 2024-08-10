@@ -31,7 +31,7 @@ export class LoginComponent {
     }, 1500);
     this.http.login(data.email, data.password).subscribe({
       next: (data: any) => {
-        this.setNoty("Login Successful", "toast--success", 10000)
+        this.setNoty("Login Successful", "toast--success", 1500)
         setTimeout(() => {
           this.router.navigate(['/home'])
         }, 1500);

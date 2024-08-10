@@ -7,19 +7,26 @@
     <span class="label" [class.d-none]="!item.tags">{{ item.tags }}</span>
     <ul class="product__hover">
       <li>
-        <a href="#"
-          ><img src="../../../../assets/img/icon/heart.png" alt=""
-        /></a>
+        <a href="javascript:;" (click)="onAddWishList(item)">
+          <!-- <img src="../../../../assets/img/icon/heart.png" alt="" /> -->
+          <i
+            class="fa fa-regular fa-heart"
+            [ngClass]="isWishList ? 'text-danger' : 'text-dark'"
+          ></i>
+          <span class="top-0">Wishlist</span>
+        </a>
       </li>
       <li>
-        <a href="#"
-          ><img src="../../../../assets/img/icon/compare.png" alt="" />
-          <span>Compare</span></a
-        >
+        <a href="javascript:;">
+          <fa-icon [icon]="faArrowRightArrowLeft" class="text-dark"></fa-icon>
+          <span class="top-0">Compare</span>
+        </a>
       </li>
       <li>
         <a href="/product-details/{{ item._id }}" (click)="onSetPID(item._id)">
-          <img src="../../../../assets/img/icon/search.png" alt="" />
+          <!-- <img src="../../../../assets/img/icon/search.png" alt="" /> -->
+          <fa-icon [icon]="faSearch" class="text-dark"></fa-icon>
+          <span class="top-0 right-0">Details</span>
         </a>
       </li>
     </ul>

@@ -7,9 +7,8 @@ module.exports = {
     return responseUtils.ok(res, orders);
   },
   create: async (req, res) => {
-    const order = req.body;
-    const result = await orderService.createOrder(order);
-    return responseUtils.ok(res, { order: result });
+    const result = await orderService.createOrder(req.body);
+    return responseUtils.ok(res, result);
   },
   update: async (req, res) => {
     const { id } = req.params;
@@ -21,5 +20,14 @@ module.exports = {
     const { id } = req.params;
     const result = await orderService.deleteOrder(id);
     return responseUtils.ok(res, { "Order deleted": result });
+  },
+  orderByUserID: async (req, res) => {
+    const { uid } = req.query;
+    const result = await orderService.orderByUserID(uid);
+    return responseUtils.ok(res, result);
+  },
+  orderByID: async (req, res) => {
+    const result = await orderService.orderByID(req.query);
+    return responseUtils.ok(res, result);
   },
 };

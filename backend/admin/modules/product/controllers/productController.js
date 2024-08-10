@@ -3,7 +3,6 @@ const productService = require("modules/product/services/productService");
 
 module.exports = {
   index: async (req, res) => {
-    console.log(req.query);
     const products = await productService.list(req.query);
     return responseUtils.ok(res, products);
   },

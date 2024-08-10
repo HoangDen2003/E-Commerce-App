@@ -1,0 +1,241 @@
+<!-- Page Preloder -->
+<div id="preloder" [class.d-none]="!isLoading">
+  <div class="loader"></div>
+</div>
+
+<section class="bg-body">
+  <div class="container">
+    <!--/ Checkout Wizard -->
+    <!-- Checkout Wizard -->
+    <div
+      id="wizard-checkout"
+      class="bs-stepper wizard-icons wizard-icons-example"
+    >
+      <!-- <div class="bs-stepper-header m-lg-auto border-0">
+        <div class="step crossed" data-target="#checkout-cart">
+          <button type="button" class="step-trigger" aria-selected="false">
+            <span class="bs-stepper-icon">
+              <svg viewBox="0 0 60 60">
+                <use
+                  xlink:href="../../assets/svg/icons/wizard-checkout-cart.svg#wizardCart"
+                ></use>
+              </svg>
+            </span>
+            <span class="bs-stepper-label">Cart</span>
+          </button>
+        </div>
+        <div class="line">
+          <i class="bx bx-chevron-right"></i>
+        </div>
+        <div class="step crossed" data-target="#checkout-address">
+          <button type="button" class="step-trigger" aria-selected="false">
+            <span class="bs-stepper-icon">
+              <svg viewBox="0 0 60 60">
+                <use
+                  xlink:href="../../assets/svg/icons/wizard-checkout-address.svg#wizardCheckoutAddress"
+                ></use>
+              </svg>
+            </span>
+            <span class="bs-stepper-label">Address</span>
+          </button>
+        </div>
+        <div class="line">
+          <i class="bx bx-chevron-right"></i>
+        </div>
+        <div class="step crossed" data-target="#checkout-payment">
+          <button type="button" class="step-trigger" aria-selected="false">
+            <span class="bs-stepper-icon">
+              <svg viewBox="0 0 60 60">
+                <use
+                  xlink:href="../../assets/svg/icons/wizard-checkout-payment.svg#wizardPayment"
+                ></use>
+              </svg>
+            </span>
+            <span class="bs-stepper-label">Payment</span>
+          </button>
+        </div>
+        <div class="line">
+          <i class="bx bx-chevron-right"></i>
+        </div>
+        <div class="step active" data-target="#checkout-confirmation">
+          <button type="button" class="step-trigger" aria-selected="true">
+            <span class="bs-stepper-icon">
+              <svg viewBox="0 0 60 60">
+                <use
+                  xlink:href="../../assets/svg/icons/wizard-checkout-confirmation.svg#wizardConfirm"
+                ></use>
+              </svg>
+            </span>
+            <span class="bs-stepper-label">Confirmation</span>
+          </button>
+        </div>
+      </div> -->
+      <div class="bs-stepper-content border-top">
+        <form id="wizard-checkout-form" onsubmit="return false">
+          <!-- Confirmation -->
+          <div
+            id="checkout-confirmation"
+            class="content fv-plugins-bootstrap5 fv-plugins-framework active dstepper-block"
+          >
+            <div class="row mb-6">
+              <div class="col-12 col-lg-8 mx-auto text-center mb-2">
+                <h4>Thank You! 😇</h4>
+                <p>
+                  Your order
+                  <a href="javascript:void(0)" class="text-primary fw-medium"
+                    >#{{ order._id }}</a
+                  >
+                  has been placed!
+                </p>
+                <p>
+                  We sent an email to
+                  <a href="mailto:{{ email }}" class="text-primary fw-medium">{{
+                    email
+                  }}</a>
+                  with your order confirmation and receipt. If the email hasn't
+                  arrived within two minutes, please check your spam folder to
+                  see if the email was routed there.
+                </p>
+                <p>
+                  <fa-icon [icon]="faClock"></fa-icon> Time placed:&nbsp;
+                  <strong>{{ order.createdAt | date : "dd/MM/yyyy" }}</strong>
+                </p>
+              </div>
+              <!-- Confirmation details -->
+              <div class="col-12">
+                <ul class="list-group list-group-horizontal-md">
+                  <li class="list-group-item flex-fill p-6 text-body">
+                    <h6 class="d-flex align-items-center gap-2">
+                      <fa-icon [icon]="faLocationDot"></fa-icon> Shipping
+                    </h6>
+                    <address class="mb-0">
+                      Hà Đình Hoàng <br />
+                      57 Khuong Trung Street,<br />
+                      Thanh Xuan, Ha Noi
+                    </address>
+                    <p class="mb-0 mt-4">+123456789</p>
+                  </li>
+                  <li class="list-group-item flex-fill p-6 text-body">
+                    <h6 class="d-flex align-items-center gap-2">
+                      <fa-icon [icon]="faWallet"></fa-icon> Billing Address
+                    </h6>
+                    <address class="mb-0">
+                      {{ user.fullname }} <br />
+                      {{ user.address }}
+                    </address>
+                    <p class="mb-0 mt-4">{{ user.phone }}</p>
+                  </li>
+                  <li class="list-group-item flex-fill p-6 text-body">
+                    <h6 class="d-flex align-items-center gap-2">
+                      <fa-icon [icon]="faTruckFast"></fa-icon> Shipping Method
+                    </h6>
+                    <p class="fw-medium mb-4">Preferred Method:</p>
+                    Standard Delivery<br />
+                    (Normally 3-4 business days)
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="row">
+              <!-- Confirmation items -->
+              <div class="col-xl-9 mb-6 mb-xl-0">
+                <ul class="list-group">
+                  <li
+                    class="list-group-item p-6"
+                    *ngFor="let product of products"
+                  >
+                    <div class="d-flex gap-4 flex-sm-row flex-column">
+                      <div class="flex-shrink-0">
+                        <img
+                          [src]="product.productID.image"
+                          alt="google home"
+                          class="object-fit-cover"
+                          width="90"
+                          height="90"
+                        />
+                      </div>
+                      <div class="flex-grow-1">
+                        <div class="row">
+                          <div class="col-md-6">
+                            <a href="javascript:void(0)">
+                              <h6 class="mb-2">{{ product.productID.name }}</h6>
+                            </a>
+                            <div class="text-body mb-2 d-flex flex-wrap">
+                              <span class="me-1">Sold by:</span>
+                              <a href="javascript:void(0)" class="me-3"
+                                >Google</a
+                              >
+                            </div>
+                            <span
+                              [class.d-none]="!product.productID.stock"
+                              class="badge bg-label-success"
+                              >In Stock</span
+                            >
+                          </div>
+                          <div class="col-md-3">
+                            <div class="text-md-end">
+                              <div class="my-2 my-lg-6">
+                                <span class="text-dark">
+                                  x{{ product.quantity }}
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-3">
+                            <div class="text-md-end">
+                              <div class="my-2 my-lg-6">
+                                <span class="text-primary"
+                                  >${{
+                                    product.productID.price * product.quantity
+                                  }}/</span
+                                ><s class="text-muted">$0</s>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <!-- Confirmation total -->
+              <div class="col-xl-3">
+                <div class="border rounded p-6">
+                  <!-- Price Details -->
+                  <h6>Price Details</h6>
+                  <dl class="row mb-0 text-heading">
+                    <dt class="col-6 fw-normal">Order Total</dt>
+                    <dd class="col-6 text-end fw-bold">${{ total }}</dd>
+
+                    <dt class="col-sm-6 text-heading fw-normal">Charges</dt>
+                    <dd class="col-sm-6 text-end text-dark">
+                      <s class="text-muted">$5.00</s>
+                      <span class="badge bg-label-success ms-1">Free</span>
+                    </dd>
+                  </dl>
+                  <hr class="mx-n6 mb-6" />
+                  <dl class="row mb-0">
+                    <dt class="col-6 text-heading">Total</dt>
+                    <dd class="col-6 fw-bold text-end text-heading mb-0">
+                      ${{ total }}
+                    </dd>
+                  </dl>
+                </div>
+                <div class="border mt-2 rounded">
+                  <a
+                    routerLink="/home"
+                    class="primary-btn text-white text-center"
+                    style="width: 100%"
+                    >Back to home
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!--/ Checkout Wizard -->
+  </div>
+</section>

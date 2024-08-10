@@ -16,6 +16,7 @@ export class HeaderComponent {
   item: any = {}
   isDropdownOpen = false;
   cartCount: number = 0
+  wishListCount: number = 0
 
   constructor(private router: Router, private http: ApiService) {}
 
@@ -24,6 +25,7 @@ export class HeaderComponent {
     this.loadData()
     this.loadCartCount()
     this.loadActiveUrl()
+    this.loadWishListCount()
   }
 
   setActive(url: string) {
@@ -46,12 +48,19 @@ export class HeaderComponent {
     localStorage.removeItem('access_token')
     localStorage.removeItem('refresh_token')
     localStorage.removeItem('cartCount')
+    localStorage.removeItem('order_id')
     this.router.navigate(['/auth/login'])
   }
 
   loadCartCount() {
     this.baseService.cartCount$.subscribe( cc => {
       this.cartCount = cc
+    })
+  }
+
+  loadWishListCount() {
+    this.baseService.wishListCount$.subscribe( wc => {
+      this.wishListCount = wc
     })
   }
 

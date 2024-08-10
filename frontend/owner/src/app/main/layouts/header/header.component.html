@@ -72,8 +72,13 @@
           <a href="#" class="search-switch active">
             <img src="../../../../assets/img/icon/search.png" alt="" />
           </a>
-          <a href="#">
+          <a routerLink="/wishlist">
             <img src="../../../../assets/img/icon/heart.png" alt="" />
+            <span
+              class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20 text-white left-15"
+            >
+              {{ wishListCount }}
+            </span>
           </a>
           <a
             class="active ms-cart"

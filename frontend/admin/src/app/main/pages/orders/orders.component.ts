@@ -26,6 +26,7 @@ export class OrdersComponent {
       next: (data: any) => { 
         this.items = data["data"]
         this.pages = data.data.pages
+        console.log(this.items)
       },
       error: (error: Error) => {
         console.log(error)

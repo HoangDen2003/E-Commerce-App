@@ -4,9 +4,19 @@ const slugify = require("slugify");
 module.exports = {
   list: async (query) => {
     let products;
-    console.log(query);
-    if (query.tag) {
-      products = await Product.find({ tags: query.tag })
+    if (query.tags && query.category) {
+      products = await Product.find({
+        tags: query.tags,
+        category: query.category,
+      })
+        .populate("category")
+        .exec();
+    } else if (query.tags) {
+      products = await Product.find({ tags: query.tags })
+        .populate("category")
+        .exec();
+    } else if (query.category) {
+      products = await Product.find({ category: query.category })
         .populate("category")
         .exec();
     } else {
@@ -18,6 +28,8 @@ module.exports = {
     const endIndex = query.currentPage * query.limit;
     const pages = Math.ceil(products.length / query.limit);
     const data = products.slice(startIndex, endIndex);
+
+    // return { data: products, pages };
 
     if (data) return { data, pages };
   },

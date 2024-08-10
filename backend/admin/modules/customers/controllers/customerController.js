@@ -34,4 +34,8 @@ module.exports = {
     const result = await customerService.customer(req.params);
     return responseUtils.ok(res, result);
   },
+  addWishList: async (req, res) => {
+    const result = await customerService.addWishList(req.body);
+    return responseUtils.ok(res, result);
+  },
 };

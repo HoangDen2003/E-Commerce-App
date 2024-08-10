@@ -15,6 +15,7 @@ interface AuthResponse {
 @Injectable({
   providedIn: 'root'
 })
+
 export class ApiService {
 
   constructor(private http: HttpClient) { }
@@ -43,7 +44,7 @@ export class ApiService {
     return this.http.post<any>(url, body)
       .pipe(
         tap(response => {
-          console.log('Response received from API:', response); // Log response to debug
+          // console.log('Response received from API:', response); // Log response to debug
 
           if (response && response.data) {
             this.storeTokens(response.data);
@@ -60,12 +61,16 @@ export class ApiService {
   }
 
   // get all items
-  getData(nameApi: string, limit: number, currentPage: number, tag: string): Observable<any> {
+  getData(nameApi: string, limit: number, currentPage: number, tags: string, category: string): Observable<any> {
     let query = new HttpParams()
     .set("limit", limit)
     .set("currentPage", currentPage)
+    .set("tags", tags)
+    .set("category", category)
 
-    if (tag) query = query.set("tag", tag)
+    // if (tag) query = query.set("tag", tag)
+
+    // if (body.value) query = query.set(body.key, body.value)
 
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${localStorage.getItem("access_token")}`
@@ -98,6 +103,7 @@ export class ApiService {
 
   // add to cart
   create(nameApi: string, body: any): Observable<any> {
+
     const url = `${this.apiUrl}/${nameApi}/create`;
     return this.http.post<any>(url, body);
   }
@@ -116,6 +122,32 @@ export class ApiService {
     }
     const url = `${this.apiUrl}/carts/delete-product-cart`;
     return this.http.put<any>(url, body);
+  }
+
+  deleteCart(cid: any): Observable<any> {
+    const query = new HttpParams()
+    .set("_id", cid)
+    return this.http.delete<any>(`${this.apiUrl}/carts/delete`, { params: query });
+  }
+
+  addWishList(uid: any, pid: any): Observable<any> {
+    const body = {
+      uid: uid,
+      pid: pid
+    }
+    const url = `${this.apiUrl}/add-wishlist`;
+    return this.http.put<any>(url, body);
+  } 
+
+  getOrder(): Observable<any> {
+    const __OID = localStorage.getItem('order_id')
+    if (!__OID) return throwError(() => new Error('Order ID not found'));
+
+    const query = new HttpParams()
+    .set("_id", __OID)
+    const url = `${this.apiUrl}/orders/getOrder`;
+
+    return this.http.get<any>(url, {params: query});
   }
 
 }

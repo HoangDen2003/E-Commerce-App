@@ -43,7 +43,7 @@
         <div class="breadcrumb__text">
           <h4>Shop</h4>
           <div class="breadcrumb__links">
-            <a href="./index.html">Home</a>
+            <a routerLink="/home">Home</a>
             <span>Shop</span>
           </div>
         </div>
@@ -60,7 +60,7 @@
       <div class="col-lg-3">
         <div class="shop__sidebar">
           <div class="shop__sidebar__search">
-            <form action="#">
+            <form>
               <input type="text" placeholder="Search..." />
               <button type="submit">
                 <span class="icon_search"></span>
@@ -87,8 +87,21 @@
                   <div class="card-body">
                     <div class="shop__sidebar__categories">
                       <ul class="nice-scroll">
-                        <li *ngFor="let category of categories">
-                          <a href="#">{{ category.name }} (20)</a>
+                        <li>
+                          <a
+                            [class.active]="category === ''"
+                            href="javascript:;"
+                            (click)="onFillter('')"
+                            >All
+                          </a>
+                        </li>
+                        <li *ngFor="let ctg of categories">
+                          <a
+                            [class.active]="category === ctg._id"
+                            href="javascript:;"
+                            (click)="onFillter(ctg._id)"
+                            >{{ ctg.name }} (20)</a
+                          >
                         </li>
                       </ul>
                     </div>
@@ -274,8 +287,24 @@
                 >
                   <div class="card-body">
                     <div class="shop__sidebar__tags">
-                      <a href="#">New</a>
-                      <a href="#">Sale</a>
+                      <a
+                        [class.active]="tag === 'new'"
+                        href="javascript:"
+                        (click)="onFillterTags('new')"
+                        >New
+                      </a>
+                      <a
+                        [class.active]="tag === 'sale'"
+                        href="javascript:"
+                        (click)="onFillterTags('sale')"
+                        >Sale
+                      </a>
+                      <a
+                        [class.active]="tag === ''"
+                        href="javascript:"
+                        (click)="onFillterTags('')"
+                        >All
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -289,7 +318,7 @@
           <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-6">
               <div class="shop__product__option__left">
-                <p>Showing 1–12 of {{ items.length }} products</p>
+                <p>Showing 1–9 of {{ items.length }} products</p>
               </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6">
@@ -346,7 +375,12 @@
           ></app-product>
         </div>
         <!-- pagination -->
-        <app-pagination></app-pagination>
+        <app-pagination
+          [limit]="limit"
+          [pages]="pages"
+          [currentPage]="currentPage"
+          (currentPageChange)="onPageChange($event)"
+        ></app-pagination>
         <!-- / pagination -->
       </div>
     </div>

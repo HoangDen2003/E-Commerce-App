@@ -23,19 +23,12 @@ const CustomerSchema = new Schema(
     address: {
       type: String,
     },
-    cart: [
+    wishlist: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Cart",
+        ref: "Product",
       },
     ],
-
-    //   wishlist: [
-    //     {
-    //       type: Schema.Types.ObjectId,
-    //       ref: "Product",
-    //     },
-    //   ],
     status: {
       type: String,
       require: true,

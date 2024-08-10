@@ -14,6 +14,10 @@ import { CartComponent } from './pages/cart/cart.component';
 import { ShopComponent } from './pages/shop/shop.component';
 import { PaginationComponent } from './features/pagination/pagination.component';
 import { StarRatingComponent } from './features/star-rating/star-rating.component';
+import { WishlistComponent } from './pages/wishlist/wishlist.component';
+import { MyProfileComponent } from './pages/my-profile/my-profile.component';
+import { CheckoutComponent } from './pages/checkout/checkout.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -26,6 +30,9 @@ import { StarRatingComponent } from './features/star-rating/star-rating.componen
     SlideComponent,
     CartComponent,
     ShopComponent,
+    WishlistComponent,
+    MyProfileComponent,
+    CheckoutComponent,
   ],
   imports: [
     CommonModule,
@@ -34,6 +41,7 @@ import { StarRatingComponent } from './features/star-rating/star-rating.componen
     ProductComponent,
     StarRatingComponent,
     PaginationComponent,
+    FontAwesomeModule
   ]
 })
 export class MainModule { }
