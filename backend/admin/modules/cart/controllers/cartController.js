@@ -19,8 +19,7 @@ module.exports = {
     return responseUtils.ok(res, cart);
   },
   delete: async (req, res) => {
-    const { id } = req.params;
-    const cart = await cartService.delete(id);
+    const cart = await cartService.delete(req.query);
     return responseUtils.ok(res, cart);
   },
   deleteProductCart: async (req, res) => {
@@ -30,7 +29,11 @@ module.exports = {
   },
   cart: async (req, res) => {
     const { uid } = req.query;
-    const cart = await cartService.cart(uid);
-    return responseUtils.ok(res, cart);
+    try {
+      const cart = await cartService.cart(uid);
+      return responseUtils.ok(res, cart);
+    } catch (error) {
+      return responseUtils.error(res, error);
+    }
   },
 };

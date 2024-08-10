@@ -20,6 +20,11 @@ export class ShopComponent {
 
   items: any[] = []
   categories: any[] = []
+  category: string = ''
+  wishList: any[] = []
+  fillTer: any[] = []
+
+
   currentPage: number = 1
   pages: number = 1
   limit: number = 9
@@ -45,9 +50,10 @@ export class ShopComponent {
   }
 
   loadProduct() {
-    this.http.getData("/products", this.limit, this.currentPage, this.tag).subscribe({
+    this.http.getData("/products", this.limit, this.currentPage, this.tag, this.category).subscribe({
       next: (data: any) => {
         this.items = data["data"]["data"].slice()
+        this.pages = data["data"]["pages"]
       },
       error: (error) => {
         console.log(error)
@@ -56,7 +62,7 @@ export class ShopComponent {
   }
 
   loadCategory() {
-    this.http.getData('/categories', this.limit, this.currentPage, this.tag).subscribe({
+    this.http.getData('/categories', this.limit, this.currentPage, "", "").subscribe({
       next: (data: any) => {
         this.categories = data["data"].slice()
       },
@@ -85,6 +91,23 @@ export class ShopComponent {
         content.classList.toggle('collapsed');
       }
     }
+  }
+
+  onPageChange(page: number): void {
+    console.log(page)
+    this.currentPage = page;
+    this.loadProduct();
+  }
+
+  onFillter(category: any) {
+    const __CID = category
+    this.category = __CID
+    this.loadProduct()
+  }
+
+  onFillterTags(tag: any) {
+    this.tag = tag
+    this.loadProduct()
   }
 
 }

@@ -28,13 +28,13 @@ export class HomeComponent {
     this.loadProducts()
     this.loadToasts()
     this.loadCartCount()
+    this.loadWishListCount()
   }
 
   loadProducts() {
-    this.http.getData("/products", 4, this.currentPage, this.tag).subscribe({
+    this.http.getData("/products", 4, this.currentPage, this.tag, "").subscribe({
       next: (data: any) => {
         this.items = data["data"]["data"].slice()
-        console.log(this.items)
       }
     })
   }
@@ -60,13 +60,17 @@ export class HomeComponent {
   loadCartCount() {
     const uid = localStorage.getItem('user_id')
     if (!uid) return
-    this.http.getCart("/carts", uid).subscribe({
+    this.http.getCart("carts", uid).subscribe({
       next: (data: any) => {
         data["data"]["product"].map((item: any) => {
           this.cartCount += item["quantity"]
         })
-        // this.baserService.setCartCount(this.cartCount)
+        this.baserService.setCartCount(this.cartCount)
         localStorage.setItem('cartCount', String(this.cartCount))
+      },
+      error: (error) => {
+        this.baserService.setCartCount(0)
+        localStorage.setItem('cartCount', String(0))
       }
     })
   }
@@ -74,6 +78,13 @@ export class HomeComponent {
   onSetTags(tag: string) {
     this.tag = tag
     this.loadProducts()
+  }
+
+  loadWishListCount() {
+    this.http.getUser().subscribe((data: any) => {
+      this.baserService.setWishListCount(data["data"]["wishlist"].length)
+      localStorage.setItem('wishListCount', String(data["data"]["wishlist"].length))
+    })
   }
 
 }

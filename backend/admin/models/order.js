@@ -3,14 +3,20 @@ const Schema = mongoose.Schema;
 
 const OrderSchema = new Schema(
   {
-    customerID: {
+    uid: {
       type: Schema.Types.ObjectId,
       ref: "Customer",
     },
-    productsID: [
+    products: [
       {
-        type: Schema.Types.ObjectId,
-        ref: "Product",
+        productID: {
+          type: Schema.Types.ObjectId,
+          ref: "Product",
+        },
+        quantity: {
+          type: Number,
+          require: true,
+        },
       },
     ],
     quantity: {
@@ -23,7 +29,7 @@ const OrderSchema = new Schema(
     },
     payment: {
       type: String,
-      require: true,
+      default: "pending",
     },
     method: {
       type: String,
@@ -32,6 +38,7 @@ const OrderSchema = new Schema(
     status: {
       type: String,
       require: true,
+      default: "undelivered",
     },
     address: {
       type: String,

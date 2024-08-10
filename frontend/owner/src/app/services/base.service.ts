@@ -8,11 +8,13 @@ import { BehaviorSubject } from 'rxjs';
 export class BaseService {
 
   public cartCount$ = new BehaviorSubject<number>(0)
+  public wishListCount$ = new BehaviorSubject<number>(0)
   public activeNav$ = new BehaviorSubject<string>('')
 
   constructor(private router: Router) {
     this.getCartCount()
     this.getUrl()
+    this.getWishListCount()
   }
 
   // get cart number from localstorage
@@ -25,6 +27,13 @@ export class BaseService {
   // get url
   getUrl() {
     this.activeNav$ = new BehaviorSubject<string>(this.router.url)
+  }
+
+  // get wishlist number
+  getWishListCount() {
+    const initialCount = localStorage.getItem('wishListCount')
+    if (!initialCount) return
+    this.wishListCount$ = new BehaviorSubject<number>(Number(initialCount));
   }
 
   // cart number
@@ -46,6 +55,22 @@ export class BaseService {
   // url
   setActive(url: string) {
     this.activeNav$.next(url)
+  }
+
+  // wishlist
+  setWishListCount(number: number) {
+    this.wishListCount$.next(number)
+    localStorage.setItem('wishListCount', String(number))
+  }
+
+  increaseWishListCount(number: number) {
+    this.wishListCount$.next(this.wishListCount$.value + number)
+    localStorage.setItem('wishListCount', String(this.wishListCount$.value))
+  }
+
+  decreaseWishListCount(number: number) {
+    this.wishListCount$.next(this.wishListCount$.value - number)
+    localStorage.setItem('wishListCount', String(this.wishListCount$.value))
   }
 
 }

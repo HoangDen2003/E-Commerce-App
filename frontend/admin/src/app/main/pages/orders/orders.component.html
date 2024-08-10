@@ -250,7 +250,7 @@
                   <td class="sorting_1">
                     <!-- Apr 15, 2023, 10:21 -->
                     <span class="text-nowrap">{{
-                      item?.createdAt | date : "medium"
+                      item?.createdAt | date : "dd/MM/yyyy, HH:mm"
                     }}</span>
                   </td>
                   <td>
@@ -260,7 +260,7 @@
                       <div class="avatar-wrapper">
                         <div class="avatar me-2">
                           <img
-                            src="../../../../assets/img/avatars/1.png"
+                            [src]="item.uid.avatar"
                             alt="Avatar"
                             class="rounded-circle"
                           />
@@ -269,12 +269,10 @@
                       <div class="d-flex flex-column">
                         <h6 class="m-0">
                           <a href="pages-profile-user.html" class="text-body">
-                            {{ item.customerID?.fullname }}
+                            {{ item.uid.fullname }}
                           </a>
                         </h6>
-                        <small class="text-muted">{{
-                          item.customerID?.email
-                        }}</small>
+                        <small class="text-muted">{{ item.uid.email }}</small>
                       </div>
                     </div>
                   </td>

@@ -57,9 +57,12 @@ module.exports = {
     return cart;
   },
   cart: async (uid) => {
-    const cart = await Cart.findOne({ userID: uid }).populate(
-      "product.productID"
-    );
+    const cart = await Cart.findOne({ userID: uid })
+      .populate("product.productID")
+      .populate("userID");
+    if (!cart) {
+      throw new Error("Cart not found");
+    }
     return cart;
   },
 };

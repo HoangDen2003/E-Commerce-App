@@ -103,7 +103,7 @@ router.group("/products", (router) => {
   router.get("/", productController.index);
 });
 
-router.group("/orders", admin, (router) => {
+router.group("/orders", (router) => {
   router.put(
     "/update/:id",
     validate([orderValidation.update]),
@@ -119,12 +119,13 @@ router.group("/orders", admin, (router) => {
     validate([orderValidation.create]),
     orderController.create
   );
+  router.get("/getOrder", orderController.orderByID);
   router.get("/", orderController.index);
 });
 
 router.group("/carts", (router) => {
   router.put("/delete-product-cart", cartController.deleteProductCart);
-  router.delete("/delete/:id", cartController.delete);
+  router.delete("/delete", cartController.delete);
   router.put("/update/:id", cartController.update);
   router.post("/create", cartController.create);
   router.get("/cart", cartController.cart);
@@ -134,5 +135,8 @@ router.group("/carts", (router) => {
 // login customer
 router.post("/customer/login", customerController.login);
 router.get("/get-user/:_id", customerController.customer);
+
+// add wishlist
+router.put("/add-wishlist", customerController.addWishList);
 
 module.exports = router;

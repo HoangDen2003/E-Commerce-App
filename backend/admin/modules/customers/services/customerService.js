@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs");
 
 module.exports = {
   list: async () => {
-    const customers = await Customers.find({});
+    const customers = await Customers.find({}).populate("wishlist");
     return customers;
   },
   createCustomer: async (customer) => {
@@ -46,7 +46,22 @@ module.exports = {
     };
   },
   customer: async (id) => {
-    const customer = await Customers.findOne(id).populate("cart");
+    const customer = await Customers.findOne(id).populate("wishlist");
     return customer;
+  },
+  addWishList: async (body) => {
+    const customer = await Customers.findOne({ _id: body.uid });
+    const productIndex = customer.wishlist.findIndex(
+      (item) => item == body.pid
+    );
+    if (productIndex === -1) {
+      customer.wishlist.push(body.pid);
+      await customer.save();
+      return { customer, msg: "Added WishList Success" };
+    } else {
+      customer.wishlist.splice(productIndex, 1);
+      await customer.save();
+      return { customer, msg: "Removed WishList Success" };
+    }
   },
 };
